@@ -48,7 +48,7 @@ const Experts = () => {
 
 
 
-            <Row xs={1} md={4} className="g-4">
+            <Row xs={1} md={4} className="g-4 m-0">
                 {
                     allExperts.map(expert => <Expert key={expert.id} expert={expert}></Expert>)
                 }
