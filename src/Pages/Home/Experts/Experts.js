@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Expert1 from '../../../images/experts/expert-1.jpg'
 import Expert2 from '../../../images/experts/expert-2.jpg'
 import Expert3 from '../../../images/experts/expert-3.jpg'
@@ -43,7 +43,8 @@ const Experts = () => {
         },
     ]
     return (
-        <div>
+        <Container>
+
             <h2 className='service-title'>Our Experts</h2>
 
 
@@ -54,8 +55,7 @@ const Experts = () => {
                 }
 
             </Row>
-
-        </div>
+        </Container>
     );
 };
 
