@@ -45,7 +45,7 @@ const Experts = () => {
     return (
         <Container>
 
-            <h2 className='service-title'>Our Experts</h2>
+            <h2 className='text-center my-3 text-primary'>Our Experts</h2>
 
 
 

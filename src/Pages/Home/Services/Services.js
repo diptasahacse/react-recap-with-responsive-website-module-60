@@ -15,9 +15,9 @@ const Services = () => {
 
     return (
 
-        <Container>
+        <Container id='services'>
 
-            <h2 className='text-center my-3'>Our Services</h2>
+            <h2 className='text-center text-primary my-3'>Our Services</h2>
 
 
             <Row xs={1} md={4} className="g-4 m-0">
