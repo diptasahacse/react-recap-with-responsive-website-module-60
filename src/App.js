@@ -10,6 +10,7 @@ import NotFound from './Pages/NotFound/NotFound';
 import Register from './Pages/Register/Register';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Checkout from './Pages/Checkout/Checkout';
+import TermsCondition from './Pages/TermsCondition/TermsCondition';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
         <Route path='/about' element={<About></About>}></Route>
+        <Route path='/terms' element={<TermsCondition></TermsCondition>}></Route>
         <Route path='/service/:serviceId' element={<ServiceDetails></ServiceDetails>}></Route>
         <Route path='/checkout' element={
           <RequireAuth>

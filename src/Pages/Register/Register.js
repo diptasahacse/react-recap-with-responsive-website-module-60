@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Social from '../Social/Social';
@@ -12,13 +12,14 @@ const Register = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
     const [isChecked, setIsChecked] = useState(false)
+    const [updateProfile, updating, updateProfileError] = useUpdateProfile(auth)
     let errorMessage;
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -29,12 +30,15 @@ const Register = () => {
 
     }
 
-    const registerSubmitHandler = (event) => {
+    const registerSubmitHandler = async(event) => {
         event.preventDefault()
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const pass = passwordRef.current.value;
-        createUserWithEmailAndPassword(email, pass)
+        await createUserWithEmailAndPassword(email, pass)
+        await updateProfile({ displayName:name });
+          alert('Updated profile');
+
 
     }
     const checkboxChangeHandler = (event) => {
@@ -45,9 +49,8 @@ const Register = () => {
     if (user) {
         navigate(from, { replace: true });
     }
-    let customButton = <Button className='form-control' variant="primary" type="submit" >
-        Register
-    </Button>
+    console.log(user)
+   
 
     return (
         <Container className='my-4'>
@@ -73,7 +76,8 @@ const Register = () => {
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check onChange={checkboxChangeHandler} name='checkbox' type="checkbox" className={isChecked? "text-primary" : "text-danger"} label="Accept terms and condition" />
+                    <Form.Check onChange={checkboxChangeHandler} name='checkbox' type="checkbox" className='d-inline me-2' />
+                    <Form.Label className={`${isChecked ? "text-primary" : "text-danger"}`}>Accept <Link to='/terms'>terms and condition</Link> </Form.Label>
                 </Form.Group>
 
                 {

@@ -18,7 +18,7 @@ const Login = () => {
         signInWithEmailAndPassword, user1, loading, error
     ] = useSignInWithEmailAndPassword(auth);
 
-    const [user,] = useAuthState(auth)
+    const [user] = useAuthState(auth)
 
 
     const loginSubmitHandler = (event) => {
@@ -26,6 +26,7 @@ const Login = () => {
         const email = emailRef.current.value;
         const pass = passwordRef.current.value;
         // console.log(email,pass)
+        
         signInWithEmailAndPassword(email, pass)
 
     }
