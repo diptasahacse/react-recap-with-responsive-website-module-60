@@ -1,21 +1,54 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Social from '../Social/Social';
+
 
 const Register = () => {
     const nameRef = useRef('')
     const emailRef = useRef('')
     const passwordRef = useRef('')
+    const [isChecked, setIsChecked] = useState(false)
+    let errorMessage;
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
-    const registerSubmitHandler = (event) =>{
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
+    if (error) {
+        errorMessage = <p className='text-danger'>{error?.message}</p>
+
+    }
+
+    const registerSubmitHandler = (event) => {
         event.preventDefault()
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const pass = passwordRef.current.value;
-
-        console.log(name,email,pass)
+        createUserWithEmailAndPassword(email, pass)
 
     }
+    const checkboxChangeHandler = (event) => {
+        setIsChecked(event.target.checked)
+
+
+    }
+    if (user) {
+        navigate(from, { replace: true });
+    }
+    let customButton = <Button className='form-control' variant="primary" type="submit" >
+        Register
+    </Button>
+
     return (
         <Container className='my-4'>
             <div className='text-center text-primary'>
@@ -37,18 +70,24 @@ const Register = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref={passwordRef}  type="password" placeholder="Password" />
+                    <Form.Control ref={passwordRef} type="password" placeholder="Password" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                    <Form.Check onChange={checkboxChangeHandler} name='checkbox' type="checkbox" className={isChecked? "text-primary" : "text-danger"} label="Accept terms and condition" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Login
+
+                {
+                    errorMessage && errorMessage
+                }
+                <Button disabled={!isChecked} className='form-control' variant="primary" type="submit">
+                    Register
                 </Button>
             </Form>
-            <div className='text-center'>
+            <div className='text-center mt-3'>
                 <p>Already have an account..? <Link to='/login'>Log in</Link> </p>
             </div>
+
+            <Social></Social>
         </Container>
     );
 };
