@@ -7,7 +7,6 @@ import Social from '../Social/Social';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Shared/Loading/Loading';
-import CustomTitle from '../Shared/CustomTitle/CustomTitle';
 const Login = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
@@ -57,7 +56,7 @@ const Login = () => {
     return (
 
         <Container className='my-4'>
-            <CustomTitle title='Login'></CustomTitle>
+            
             <div className='text-center text-primary'>
                 <h3>Please Login</h3>
             </div>
