@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Social from '../Social/Social';
+import CustomTitle from '../Shared/CustomTitle/CustomTitle'
 
 
 const Register = () => {
@@ -54,6 +55,8 @@ const Register = () => {
 
     return (
         <Container className='my-4'>
+            {/* Set Helmet */}
+            <CustomTitle title="Register"></CustomTitle>
             <div className='text-center text-primary'>
                 <h3>Please Register</h3>
             </div>

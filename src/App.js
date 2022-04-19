@@ -12,6 +12,7 @@ import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Checkout from './Pages/Checkout/Checkout';
 import TermsCondition from './Pages/TermsCondition/TermsCondition';
 
+
 function App() {
   return (
     <div>

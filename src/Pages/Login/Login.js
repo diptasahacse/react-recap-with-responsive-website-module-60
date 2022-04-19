@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,11 +7,11 @@ import Social from '../Social/Social';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Shared/Loading/Loading';
+import CustomTitle from '../Shared/CustomTitle/CustomTitle';
 const Login = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
     let errorMessage;
-
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -29,6 +29,7 @@ const Login = () => {
     if(sending || loading){
         return <Loading></Loading>
     }
+    
 
     const loginSubmitHandler = (event) => {
         event.preventDefault()
@@ -52,9 +53,11 @@ const Login = () => {
 
 
     }
+
     return (
 
         <Container className='my-4'>
+            <CustomTitle title='Login'></CustomTitle>
             <div className='text-center text-primary'>
                 <h3>Please Login</h3>
             </div>
