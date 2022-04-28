@@ -31,7 +31,7 @@ const RequireAuth = ({ children }) => {
 
     </div>
   }
-  console.log(user)
+ 
   
   return children;
 
