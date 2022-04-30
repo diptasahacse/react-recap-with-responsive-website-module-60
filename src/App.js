@@ -12,6 +12,7 @@ import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Checkout from './Pages/Checkout/Checkout';
 import TermsCondition from './Pages/TermsCondition/TermsCondition';
 import AddService from './Pages/AddService/AddService';
+import ManageService from './Pages/ManageService/ManageService';
 
 
 function App() {
@@ -35,6 +36,11 @@ function App() {
         <Route path='/addservice' element={
           <RequireAuth>
             <AddService></AddService>
+          </RequireAuth>
+        }></Route>
+        <Route path='/manageservice' element={
+          <RequireAuth>
+            <ManageService></ManageService>
           </RequireAuth>
         }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
