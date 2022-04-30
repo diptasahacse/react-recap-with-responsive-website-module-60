@@ -13,6 +13,7 @@ import Checkout from './Pages/Checkout/Checkout';
 import TermsCondition from './Pages/TermsCondition/TermsCondition';
 import AddService from './Pages/AddService/AddService';
 import ManageService from './Pages/ManageService/ManageService';
+import EditService from './Pages/ManageService/EditService/EditService';
 
 
 function App() {
@@ -43,6 +44,12 @@ function App() {
             <ManageService></ManageService>
           </RequireAuth>
         }></Route>
+        <Route path='/manageservice/:editServiceId' element={
+          <RequireAuth>
+            <EditService></EditService>
+          </RequireAuth>
+        }></Route>
+        
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

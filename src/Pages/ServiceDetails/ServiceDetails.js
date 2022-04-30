@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import useService from '../../hooks/useService';
+
 
 const ServiceDetails = () => {
     const { serviceId } = useParams()
-    const [service, setService] = useState({})
-    useEffect(() => {
-        fetch(`http://localhost:7000/services/${serviceId}`)
-            .then(res => res.json())
-            .then(data => setService(data))
-    }, [])
+    const [service, setService] = useService(serviceId)
+    
+    // const [service, setService] = useState({})
+    // useEffect(() => {
+    //     fetch(`http://localhost:7000/services/${serviceId}`)
+    //         .then(res => res.json())
+    //         .then(data => setService(data))
+    // }, [])
     const navigate = useNavigate()
     const checkOutHandler = () => {
         navigate('/checkout')
