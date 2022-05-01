@@ -8,7 +8,17 @@ const EditService = () => {
     const { register, handleSubmit } = useForm();
     const [service, setService] = useService(editServiceId)
     const onSubmit = data => {
-        
+        fetch(`http://localhost:7000/services/${editServiceId}`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result =>{
+                console.log(data)
+
+            })
+
 
 
     };
@@ -29,12 +39,12 @@ const EditService = () => {
                     <div>
                         <h4>After</h4>
                         <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
-                    <input className='m-1' placeholder='Enter Service Name' {...register("name", { required: true })} />
-                    <textarea className='m-1' placeholder='Description' {...register("description", { required: true })} />
-                    <input className='m-1' placeholder='Price' type="number" {...register("price", { required: true })} />
-                    <input className='m-1' placeholder='Enter Image URL' {...register("img", { required: true })} />
-                    <input type="submit" value='Add' />
-                </form> 
+                            <input className='m-1' placeholder='Enter Service Name' {...register("name", { required: true })} />
+                            <textarea className='m-1' placeholder='Description' {...register("description", { required: true })} />
+                            <input className='m-1' placeholder='Price' type="number" {...register("price", { required: true })} />
+                            <input className='m-1' placeholder='Enter Image URL' {...register("img", { required: true })} />
+                            <input type="submit" value='Add' />
+                        </form>
                     </div>
                 </div>
             </div>
