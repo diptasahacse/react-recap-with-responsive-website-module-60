@@ -7,15 +7,9 @@ const ServiceDetails = () => {
     const { serviceId } = useParams()
     const [service, setService] = useService(serviceId)
     
-    // const [service, setService] = useState({})
-    // useEffect(() => {
-    //     fetch(`http://localhost:7000/services/${serviceId}`)
-    //         .then(res => res.json())
-    //         .then(data => setService(data))
-    // }, [])
     const navigate = useNavigate()
     const checkOutHandler = () => {
-        navigate('/checkout')
+        navigate(`/checkout/${serviceId}`)
 
     }
     return (
