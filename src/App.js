@@ -14,6 +14,7 @@ import TermsCondition from './Pages/TermsCondition/TermsCondition';
 import AddService from './Pages/AddService/AddService';
 import ManageService from './Pages/ManageService/ManageService';
 import EditService from './Pages/ManageService/EditService/EditService';
+import Orders from './Pages/Orders/Orders';
 
 
 function App() {
@@ -42,6 +43,11 @@ function App() {
         <Route path='/manageservice' element={
           <RequireAuth>
             <ManageService></ManageService>
+          </RequireAuth>
+        }></Route>
+        <Route path='/orders' element={
+          <RequireAuth>
+            <Orders></Orders>
           </RequireAuth>
         }></Route>
         <Route path='/manageservice/:editServiceId' element={
