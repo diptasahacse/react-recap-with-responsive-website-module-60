@@ -7,6 +7,7 @@ import Social from '../Social/Social';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../Shared/Loading/Loading';
+import axios from 'axios';
 const Login = () => {
     const emailRef = useRef('')
     const passwordRef = useRef('')
@@ -30,17 +31,21 @@ const Login = () => {
     }
     
 
-    const loginSubmitHandler = (event) => {
+    const loginSubmitHandler = async (event) => {
         event.preventDefault()
         const email = emailRef.current.value;
         const pass = passwordRef.current.value;
         // console.log(email,pass)
         
-        signInWithEmailAndPassword(email, pass)
+        await signInWithEmailAndPassword(email, pass);
+
+        const {data} = await axios.post('http://localhost:7000/login',{email});
+        console.log(data)
+
 
     }
     if (user) {
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
     }
     if (error) {
         errorMessage = <p className='text-danger'>{error.message}</p>
