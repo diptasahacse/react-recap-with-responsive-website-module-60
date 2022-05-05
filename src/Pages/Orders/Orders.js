@@ -14,7 +14,7 @@ const Orders = () => {
     const navigate = useNavigate()
     useEffect(() => {
         const getOrders = async()=>{
-            const url = `http://localhost:7000/orders?email=${email}`;
+            const url = `https://fast-savannah-23296.herokuapp.com/orders?email=${email}`;
             try{
                 const {data} = await axios.get(url,{
                     headers: {

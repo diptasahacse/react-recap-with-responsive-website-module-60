@@ -35,7 +35,7 @@ const Checkout = () => {
             serviceId: serviceId,
             address: event.target.address.value
         }
-        axios.post('http://localhost:7000/orders', order)
+        axios.post('https://fast-savannah-23296.herokuapp.com/orders', order)
         .then(res => {
             console.log(res)
         })

@@ -39,7 +39,7 @@ const Login = () => {
         
         await signInWithEmailAndPassword(email, pass);
 
-        const {data} = await axios.post('http://localhost:7000/login',{email});
+        const {data} = await axios.post('https://fast-savannah-23296.herokuapp.com/login',{email});
         localStorage.setItem('accessToken', data.accessToken);
         navigate(from, { replace: true });
 

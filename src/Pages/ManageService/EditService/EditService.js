@@ -8,7 +8,7 @@ const EditService = () => {
     const { register, handleSubmit } = useForm();
     const [service, setService] = useService(editServiceId)
     const onSubmit = data => {
-        fetch(`http://localhost:7000/services/${editServiceId}`, {
+        fetch(`https://fast-savannah-23296.herokuapp.com/services/${editServiceId}`, {
             method: 'PUT',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(data)
